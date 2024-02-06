@@ -1,0 +1,11 @@
+CRUD de cursos:
+
+Servicio REST que expone los siguientes recursos:
+
+-Búsqueda de todos los cursos
+-Búsqueda de curso por su id
+-Búsqueda de cursos entre rango de precios
+-Alta de nuevo curso a partir del JSON, devolviendo lista de cursos que quedan
+-Eliminar curso por denominación, devolviendo el curso eliminado
+-Actualización de precios. Se recibe temática y porcentaje, y se suben en ese 
+	porcentaje los precios de todos los cursos de esa temática 
