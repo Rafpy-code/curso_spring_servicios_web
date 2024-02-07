@@ -11,33 +11,33 @@ import java.util.List;
 @RestController
 @RequestMapping("/cursos")
 public class CursosController {
-    @Autowired
-    private CursoService cursoService;
+	@Autowired
+	private CursoService cursoService;
 
-    @GetMapping
-    public List<Curso> getAllCursos() {
-        return cursoService.buscarTodos();
-    }
+	@GetMapping(value = "buscar", produces = "application/json")
+	public List<Curso> getAllCursos() {
+		return cursoService.buscarTodos();
+	}
 
-    @GetMapping("/{id}")
-    public Curso getCursoById(@PathVariable int id) {
-        Curso curso = cursoService.buscarPorId(id);
-        return curso;
-    }
+	@GetMapping(value = "buscar/{id}", produces = "application/json")
+	public Curso getCursoById(@PathVariable int id) {
+		Curso curso = cursoService.buscarPorId(id);
+		return curso;
+	}
 
-    @PostMapping
-    public void createCurso(@RequestBody Curso curso) {
-    	cursoService.agregar(curso);
-    }
+	@PostMapping(value = "alta", consumes = "application/json")
+	public void createCurso(@RequestBody Curso curso) {
+		cursoService.agregar(curso);
+	}
 
-    @DeleteMapping("/{denominacion}")
-    public List<Curso> deleteCursoByDenominacion(@PathVariable String denominacion) {
-        List<Curso> cursos = cursoService.eliminarResultado(denominacion);
-        return cursos;
-    }
+	@DeleteMapping(value="eliminar/{denominacion}",produces="application/json")
+	public List<Curso> deleteCursoByDenominacion(@PathVariable String denominacion) {
+		List<Curso> cursos = cursoService.eliminarResultado(denominacion);
+		return cursos;
+	}
 
-    @PutMapping("/actualizar-precios/{tematica}")
-    public List<Curso> updatePreciosByTematica(@PathVariable String tematica, @RequestParam double porcentaje) {
-    	return cursoService.actualizarPrecio(tematica, porcentaje);
-    }
+	@PutMapping(value = "/actualizar-precios/{tematica}", produces = "application/json", consumes = "application/json")
+	public List<Curso> updatePreciosByTematica(@PathVariable String tematica, @RequestParam double porcentaje) {
+		return cursoService.actualizarPrecio(tematica, porcentaje);
+	}
 }
