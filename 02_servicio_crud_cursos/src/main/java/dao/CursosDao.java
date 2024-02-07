@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import models.entity.Curso;
+import models.Curso;
 
 public interface CursosDao extends JpaRepository<Curso, Integer> {
 	

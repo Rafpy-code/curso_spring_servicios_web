@@ -2,7 +2,7 @@ package service.interfaces;
 
 import java.util.List;
 
-import models.entity.Curso;
+import models.Curso;
 
 public interface CursoService {
 	List<Curso> buscarTodos();

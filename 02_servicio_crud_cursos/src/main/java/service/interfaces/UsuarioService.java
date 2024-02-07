@@ -1,6 +1,6 @@
 package service.interfaces;
 
-import models.entity.Usuario;
+import models.Usuario;
 
 public interface UsuarioService {
 	Usuario autenticarUsuario(String usuario, String password);

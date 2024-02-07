@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import dao.CursosDao;
-import models.entity.Curso;
+import models.Curso;
 import service.interfaces.CursoService;
 
 @Service
