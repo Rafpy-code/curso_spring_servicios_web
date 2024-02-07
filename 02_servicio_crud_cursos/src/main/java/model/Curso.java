@@ -1,4 +1,4 @@
-package models;
+package model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,14 +10,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="clientes")
+@Table(name="cursos")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 public class Curso {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idCurso;
+    private int idCurso;
     private String denominacion;
     private int duracion;
     private double precio;

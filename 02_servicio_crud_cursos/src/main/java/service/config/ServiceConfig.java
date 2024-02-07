@@ -45,7 +45,7 @@ public class ServiceConfig {
 	@Bean
 	public LocalContainerEntityManagerFactoryBean factory() {
 		LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
-		factory.setPersistenceUnitName("escuelaPU");
+		factory.setPersistenceUnitName("cursosPU");
 		factory.setDataSource(crearDatasource());
 		factory.setPackagesToScan("model");
 		factory.setJpaVendorAdapter(adapter());

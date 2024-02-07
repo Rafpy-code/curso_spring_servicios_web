@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import dao.CursosDao;
-import models.Curso;
+import model.Curso;
 import service.interfaces.CursoService;
 
 @Service
@@ -37,23 +37,17 @@ public class CursoServiceImpl implements CursoService {
 	}
 
 	@Override
-	public List<Curso> eliminarResultado(String denominacion) {
-		List<Curso> cursos = cursosDao.findAll();
-		cursos.removeIf(c -> c.getDenominacion().equals(denominacion));
-		return cursos;
+	public Curso eliminarCurso(String denominacion) {
+		Curso curso = cursosDao.findByDenominacion(denominacion);
+		if(curso != null) {
+			cursosDao.deleteByDenominacion(denominacion);
+		}
+		return curso;
 	}
 
 	@Override
-	public List<Curso> actualizarPrecio(String denominacion, double nuevoPrecio) {
-		List<Curso> cursos = cursosDao.findAll();
-		List<Curso> cursosEncontrados = cursos.stream()
-			.filter(c-> c.getDenominacion().equals(denominacion))
-			.toList();
-		for(Curso curso : cursosEncontrados) {
-			curso.setPrecio(nuevoPrecio);
-		}
-		
-		return cursosEncontrados;
+	public void actualizarPrecio(String denominacion, int porcentaje) {
+		cursosDao.updatePrecio(denominacion, porcentaje);
 	}
 
 }
