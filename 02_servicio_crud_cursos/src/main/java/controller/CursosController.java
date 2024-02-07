@@ -42,7 +42,7 @@ public class CursosController {
 	}
 
 	@PutMapping(value = "/actualizar-precios/{denominacion}")
-	public void updatePreciosByTematica(@PathVariable("denominacion") String tematica, @RequestParam("porcentaje") int porcentaje) {
-		cursoService.actualizarPrecio(tematica, porcentaje);
+	public void updatePreciosByTematica(@PathVariable("denominacion") String denominacion, @RequestParam("porcentaje") int porcentaje) {
+		cursoService.actualizarPrecio(denominacion, porcentaje);
 	}
 }

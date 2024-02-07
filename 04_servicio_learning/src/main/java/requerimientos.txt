@@ -1,0 +1,12 @@
+Servicio learning
+
+El servicio formación ofrece los siguientes recursos:
+
+-catalogo de formaciones
+-lista formaciones por duracion máxima 
+-alta de formaciones
+
+Una formación se caracteriza por: nombre, horas, precio
+
+Para conseguir implementar esta funcionalidad, este servicio tendrá que interaccionar
+con el servicio de cursos. 
