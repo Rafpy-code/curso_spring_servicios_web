@@ -25,6 +25,11 @@ public class CursosController {
 		Curso curso = cursoService.buscarPorId(id);
 		return curso;
 	}
+	
+	@GetMapping(value="buscar/{min}/{max}",produces=MediaType.APPLICATION_JSON_VALUE)
+	public List<Curso> cursosRango(@PathVariable("min") double min, @PathVariable("max")  double max){
+		return cursoService.buscarCursosPorRangoDePrecio(min, max);
+	}
 
 	@PostMapping(value = "alta", produces=MediaType.APPLICATION_JSON_VALUE,consumes=MediaType.APPLICATION_JSON_VALUE)
 	public void createCurso(@RequestBody Curso curso) {
