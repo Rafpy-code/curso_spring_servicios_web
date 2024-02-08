@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 
@@ -20,19 +21,21 @@ public class FormacionServiceImpl implements IFormacionServices {
 
 	@Override
 	public List<Formacion> catalogo() {
-		return Arrays.asList(restClient.get().uri(urlBase+"cursos").retrieve().body(Formacion[].class));
-		 
+		return Arrays.asList(restClient.get().uri(urlBase+"buscar").retrieve().body(Formacion[].class));
 	}
 
 	@Override
 	public List<Formacion> catalogoPorDuracionMax(int max) {
-		// TODO Auto-generated method stub
-		return null;
+		return catalogo()
+				.stream()
+				.filter((f->f.getHoras() <= max))
+				.toList();
+						
 	}
 
 	@Override
 	public void alta(Formacion formacion) {
-		// TODO Auto-generated method stub
+		restClient.post().uri(urlBase+"alta").contentType(MediaType.APPLICATION_JSON).body(formacion).retrieve();
 
 	}
 

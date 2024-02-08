@@ -1,0 +1,10 @@
+Servicio paises
+
+Ofrece los siguientes recursos:
+
+-Lista de continentes
+-Lista de paises por continente
+-Datos del pais más poblado
+
+Modelo de datos:
+-Pais: nombre, continente, capital, poblacion, bandera 
