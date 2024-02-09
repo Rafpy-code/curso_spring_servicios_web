@@ -64,13 +64,7 @@ public class CocheServiceImpl implements CocheServiceInterface {
 	@Override
 	public List<Coche> findByPrecioMax(double precioMax) {
 		List<Coche> encontrados = new ArrayList<Coche>();
-		//return coches.stream().filter(c->c.getPrecio()<=precioMax).toList();
-		for (Coche c : coches) {
-			if (c.getPrecio() <= precioMax) {
-				encontrados.add(c);
-			}
-		}
-		return encontrados;
+		return coches.stream().filter(c->c.getPrecio()<=precioMax).toList();
 	}
 
 	@Override
