@@ -1,0 +1,17 @@
+Microservicio que implemente un API REST de coches de segunda mano.
+
+Cada coche tiene las siguientes propiedades:
+-matricula (pk)
+-marca
+-modelo
+-kilometros
+-precio
+-fechaFabricacion
+
+Funcionalidades:
+-alta de coches (no matriculas repetidas)
+-catalogo de todos los coches
+-eliminar coche por matricula y devuelve el coche por eliminado
+-consulta de coches por marca
+-consulta de coches por precio maximo
+-actualizacion de coches a partir de la matricula recibida

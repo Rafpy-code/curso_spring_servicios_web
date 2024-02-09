@@ -1,6 +1,7 @@
 let url = "http://localhost:8080/05_servicio_paises/";
+
 function cargarContinentes() {
-	var res = "<h3>Seleccione un continente</h3><div class='card''><select id='lista' onchange='cargarPaises()'>";
+	let res = "<div class='card mt-5'><select id='lista' class='form-select' onchange='cargarPaises()'><option value='0' selected>Seleccione un continente</option>";
 	$.get(url + "continentes", function(data) {
 		$.each(data, function(i, e) {
 			res += "<option value='" + e + "'>" + e + "</option>";

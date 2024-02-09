@@ -1,5 +1,6 @@
 package model;
 import com.fasterxml.jackson.annotation.JsonAlias;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,7 +19,7 @@ public class Pais {
 	private String capital;
 	
 	@JsonAlias(value="population")
-	private Long poblacion;
+	private long poblacion;
 	
 	@JsonAlias(value="flag")
 	private String bandera;
