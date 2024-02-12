@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Coche {
+public class Vehiculo {
 
 	private String matricula;
 	private String marca;
@@ -21,5 +21,7 @@ public class Coche {
 	
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date fechaFabricacion;
+	private String tipo;
+	
 
 }

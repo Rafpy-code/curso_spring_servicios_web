@@ -44,8 +44,8 @@ public class CocheController {
 		service.save(coche);
 	}
 
-	@DeleteMapping(value = "eliminar", produces = MediaType.APPLICATION_JSON_VALUE)
-	public Coche eliminar(@RequestParam("matricula") String matricula) {
+	@DeleteMapping(value = "eliminar/{matricula}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public Coche eliminar(@PathVariable("matricula") String matricula) {
 		return service.delete(matricula);
 	}
 

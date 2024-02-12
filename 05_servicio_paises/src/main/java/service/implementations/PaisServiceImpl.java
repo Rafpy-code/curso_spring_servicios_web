@@ -17,8 +17,6 @@ public class PaisServiceImpl implements PaisService {
 	@Autowired
 	RestClient restClient;
 
-
-
 	public List<Pais> paises() {
 		String url = "https://restcountries.com/v2/all";
 		return Arrays.asList(restClient.get().uri(url).retrieve().body(Pais[].class));
@@ -30,7 +28,6 @@ public class PaisServiceImpl implements PaisService {
 				.map(p->p.getContinente()) //transforma Pais en String
 				.distinct()//elimina duplicados
 				.toList();//convierte Stream final a lista
-				
 	}
 
 	@Override
