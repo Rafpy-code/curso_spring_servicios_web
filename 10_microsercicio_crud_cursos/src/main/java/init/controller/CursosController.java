@@ -23,13 +23,13 @@ import init.service.interfaces.CursoService;
 @RestController
 //@RequestMapping("/cursos")
 public class CursosController {
-	
+
 	@Autowired
 	private CursoService cursoService;
 
 	@GetMapping(value = "buscar", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Curso>> getAllCursos() {
-		return new ResponseEntity<List<Curso>>(cursoService.buscarTodos(), HttpStatus.OK);
+		return new ResponseEntity<>(cursoService.buscarTodos(), HttpStatus.OK);
 	}
 
 	@GetMapping(value = "buscar/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -49,20 +49,21 @@ public class CursosController {
 	@PostMapping(value = "alta", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Curso>> createCurso(@RequestBody Curso curso) {
 		try { // cursoService.agregar(curso), HttpStatus.OK
-			return new ResponseEntity<>(cursoService.agregar(curso),HttpStatus.OK);
+			return new ResponseEntity<>(cursoService.agregar(curso), HttpStatus.OK);
 		} catch (CursoExistenteException ex) {
 			return new ResponseEntity<>(HttpStatus.CONFLICT);
 		}
 	}
 
 	@DeleteMapping(value = "eliminar/{denominacion}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public Curso deleteCursoByDenominacion(@PathVariable("denominacion") String denominacion) {
-		return cursoService.eliminarCurso(denominacion);
+	public ResponseEntity<Curso> deleteCursoByDenominacion(@PathVariable("denominacion") String denominacion) throws CursoExistenteException {
+		return new ResponseEntity<>(cursoService.eliminarCurso(denominacion), HttpStatus.OK);
 	}
 
 	@PutMapping(value = "/actualizar-precios/{denominacion}")
-	public void updatePreciosByTematica(@PathVariable("denominacion") String denominacion,
+	public ResponseEntity<Void> updatePreciosByTematica(@PathVariable("denominacion") String denominacion,
 			@RequestParam("porcentaje") int porcentaje) {
 		cursoService.actualizarPrecio(denominacion, porcentaje);
+		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 }
