@@ -15,10 +15,10 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
 	@Bean
-	public JdbcUserDetailsManager users() {
+	public JdbcUserDetailsManager conection() {
 		DriverManagerDataSource ds = new DriverManagerDataSource();
 		ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
-		ds.setUrl("jdbc:mysql://Localhost:3306/libreria");
+		ds.setUrl("jdbc:mysql://Localhost:3306/springsecurity");
 		ds.setUsername("root");
 		ds.setPassword("root");
 		JdbcUserDetailsManager jdbc = new JdbcUserDetailsManager(ds);
@@ -30,12 +30,10 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.csrf(c -> c.disable())
-				.authorizeHttpRequests(aut -> aut.requestMatchers(HttpMethod.GET, "/curso/*").authenticated()
-						.requestMatchers(HttpMethod.GET, "/cursos/*/*").authenticated()
+				.authorizeHttpRequests(aut -> aut
+						.requestMatchers(HttpMethod.GET, "/libro/*").authenticated()
 						.requestMatchers(HttpMethod.POST, "/alta").hasRole("ADMINS")
-						.requestMatchers(HttpMethod.DELETE, "/eliminar/*").hasAnyRole("ADMINS", "OPERATORS")
-						.requestMatchers(HttpMethod.PUT, "/actualizar/*").hasAnyRole("OPERATORS").anyRequest()
-						.permitAll())
+						.anyRequest().permitAll())
 				.httpBasic(Customizer.withDefaults());
 		return http.build();
 

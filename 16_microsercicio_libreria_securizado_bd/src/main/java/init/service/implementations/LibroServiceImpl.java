@@ -21,8 +21,13 @@ public class LibroServiceImpl implements LibroServiceInterface {
 	}
 
 	@Override
-	public List<Libro> catalogoTematicas() {
-		return libroDao.findAll().stream().distinct().peek(l -> l.getTematica()).toList();
+	public List<String> catalogoTematicas() {
+		/*return libroDao.findAll()
+				.stream()
+				.map(t -> t.getTematica())
+				.distinct()
+				.toList(); */
+		return libroDao.findTematicas();
 	}
 
 	@Override
@@ -32,7 +37,7 @@ public class LibroServiceImpl implements LibroServiceInterface {
 
 	@Override
 	public void alta(Libro libro) {
-		if(buscarPorIsbn(libro.getIsbn()) != null) {
+		if(buscarPorIsbn(libro.getIsbn()) == null) {
 			libroDao.save(libro);
 		}
 	}
