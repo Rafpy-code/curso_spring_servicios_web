@@ -43,10 +43,15 @@ public class LibroServiceImpl implements LibroServiceInterface {
 
 	@Override
 	public List<Libro> buscarLibroPorTematica(String tematica) {
-		return catalogoLibros()
-				.stream()
-				.filter(l -> l.getTematica().equals(tematica))
-				.toList();
+		return Arrays.asList(restClient.get()
+				.uri(urlBase+"libros")
+				.header("Authorization", "Basic "+getBase64(usuario,password))
+				.retrieve()
+				.body(Libro[].class)
+			)
+			.stream()
+			.filter(l -> l.getTematica().equals(tematica))
+			.toList();
 	}
 	
 	private String getBase64(String us, String pwd) {
