@@ -1,6 +1,7 @@
 package init.service.implementations;
 
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,13 +12,13 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestClient;
 
-import init.model.Formacion;
+import init.model.Libro;
 import init.model.TokenResponse;
-import init.service.interfaces.IFormacionServices;
+import init.service.interfaces.LibroServiceInterface;
 import jakarta.annotation.PostConstruct;
 
 @Service
-public class FormacionServiceImpl implements IFormacionServices {
+public class LibroServiceImpl implements LibroServiceInterface {
 
 	@Autowired
 	RestClient restClient;
@@ -33,44 +34,43 @@ public class FormacionServiceImpl implements IFormacionServices {
 	@Value("${app.grant_type}")
 	String grantType;
 	
-	String urlBase="http://localhost:8018/";
+	String urlBase="http://localhost:8020/";
 	String token;
 	
 	@PostConstruct
 	public void init() {
 		token = getToken();
 	}
-
-	@Override
-	public List<Formacion> catalogo() {
+	
+	private List<Libro> catalogoLibros(){
 		return Arrays.asList(restClient.get()
-				.uri(urlBase+"cursos")
+				.uri(urlBase+"libros")
 				.retrieve()
-				.body(Formacion[].class) //Formacion[].class
+				.body(Libro[].class) //Libro[].class
 				);
 	}
 
 	@Override
-	public List<Formacion> catalogoPorDuracionMax(int max) {		
-		return catalogo().stream()
-				.filter(f->f.getHoras()<=max)
-				.toList();
+	public List<String> catalogoTematicas() {
+		return Arrays.asList(restClient.get()
+				.uri(urlBase+"tematicas")
+				.header("Authorization", "Bearer "+getToken())
+				.retrieve()
+				.body(String[].class) //String[].class
+				);
 	}
 
 	@Override
-	public void alta(Formacion formacion) {
-		try {
-			restClient.post()
-			.uri(urlBase+"alta")
-			.contentType(MediaType.APPLICATION_JSON)
-			.body(formacion)
-			.header("Authorization", "Bearer "+getToken())
-			.retrieve()
-			.toBodilessEntity(); //ResponseEntity<Void>
-		} catch (Exception e) {
-			getToken();
-			alta(formacion);
-		}
+	public List<Libro> buscarLibroPorTematica(String tematica) {
+		return Arrays.asList(restClient.get()
+				.uri(urlBase+"libros")
+				.header("Authorization", "Bearer "+getToken())
+				.retrieve()
+				.body(Libro[].class)
+			)
+			.stream()
+			.filter(l -> l.getTematica().equals(tematica))
+			.toList();
 	}
 	
 	private String getToken() {
