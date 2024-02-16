@@ -19,8 +19,14 @@ public class Application {
 		return RestClient.builder();
 	}
 
-	@Bean
+	@Bean(name = "ribbonClient")
 	public RestClient getClient(RestClient.Builder builder) {
 		return builder.build();
 	}
+
+	@Bean(name = "noRibbonClient")
+	public RestClient getOtherClient() {
+		return RestClient.create();
+	}
+
 }
