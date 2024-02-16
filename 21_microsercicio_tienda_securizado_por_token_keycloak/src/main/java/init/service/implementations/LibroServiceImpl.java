@@ -1,7 +1,6 @@
 package init.service.implementations;
 
 import java.util.Arrays;
-import java.util.Base64;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +42,8 @@ public class LibroServiceImpl implements LibroServiceInterface {
 	}
 	
 	private List<Libro> catalogoLibros(){
-		return Arrays.asList(restClient.get()
+		return Arrays.asList(
+				restClient.get()
 				.uri(urlBase+"libros")
 				.retrieve()
 				.body(Libro[].class) //Libro[].class
@@ -52,7 +52,8 @@ public class LibroServiceImpl implements LibroServiceInterface {
 
 	@Override
 	public List<String> catalogoTematicas() {
-		return Arrays.asList(restClient.get()
+		return Arrays.asList(
+				restClient.get()
 				.uri(urlBase+"tematicas")
 				.header("Authorization", "Bearer "+getToken())
 				.retrieve()
@@ -62,7 +63,8 @@ public class LibroServiceImpl implements LibroServiceInterface {
 
 	@Override
 	public List<Libro> buscarLibroPorTematica(String tematica) {
-		return Arrays.asList(restClient.get()
+		return Arrays.asList(
+				restClient.get()
 				.uri(urlBase+"libros")
 				.header("Authorization", "Bearer "+getToken())
 				.retrieve()

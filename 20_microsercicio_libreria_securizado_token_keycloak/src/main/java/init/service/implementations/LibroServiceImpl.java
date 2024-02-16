@@ -27,7 +27,7 @@ public class LibroServiceImpl implements LibroServiceInterface {
 				.map(t -> t.getTematica())
 				.distinct()
 				.toList(); */
-		return libroDao.findTematicas();
+		return libroDao.findTematicas(); // Método implementado en del dao, no heredado.-
 	}
 
 	@Override

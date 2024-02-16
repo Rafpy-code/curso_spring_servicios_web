@@ -1,7 +1,5 @@
 package init;
 
-import java.beans.Customizer;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +19,8 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.csrf(c -> c.disable())
-				.authorizeHttpRequests(aut -> aut
+				.authorizeHttpRequests(
+						aut -> aut
 						.requestMatchers(HttpMethod.GET, "/catalogo").authenticated()
 						.requestMatchers(HttpMethod.GET, "/libro/*").authenticated()
 						.requestMatchers(HttpMethod.POST, "/alta").hasRole("ADMINS")
