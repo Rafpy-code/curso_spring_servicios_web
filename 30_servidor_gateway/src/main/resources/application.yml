@@ -1,3 +1,5 @@
+server:
+  port: 8030
 spring:
   application:
     name: servidor-gateway   
@@ -23,9 +25,19 @@ spring:
         predicates:
           - Path=/spedidos/**
         filters:
-          - RewritePath=/spedidos/*, /  
-server:
-  port: 8030
+          - RewritePath=/spedidos/*, /
+      - id: servLibreria
+        uri: lb://servicio-libreria 
+        predicates:
+          - Path=/slibros/**
+        filters:
+          - RewritePath=/slibros/*, /
+      - id: servTienda
+        uri: lb://servicio-tienda 
+        predicates:
+          - Path=/stematicas/**
+        filters:
+          - RewritePath=/stematicas/*, /  
 eureka:
   client:
     register-with-eureka: false
