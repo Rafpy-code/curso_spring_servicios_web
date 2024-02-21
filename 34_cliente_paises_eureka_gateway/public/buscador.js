@@ -12,7 +12,7 @@ function cargarContinentes() {
 }
 function cargarPaises() {
 	var res = "<br><h2>Paises</h2>";
-	res += "<br><table border='1'>";
+	res += "<br><table border='1' class='table'>";
 	res += "<tr><th>Nombre</th><th>Capital</th><th>Población</th><th>Bandera</th></tr>";
 	$.get(url + "paises/" + $("#lista").val(), function(data) {
 		$.each(data, function(i, p) {

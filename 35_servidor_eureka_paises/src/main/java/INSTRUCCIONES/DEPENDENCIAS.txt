@@ -1,0 +1,32 @@
+Dependencias en proyectos Spring Boot
+
+-Microservicio REST
+*Spring Web
+*Lombok
+*Spring Data JPA (SOLO SI HAY ACCESO A DATOS)
+*MySQL Driver (SOLO SI HAY ACCESO A DATOS)
+*Spring Security (SOLO SI SE VA A SECURIZAR)
+*OAuth2 Resource Server (SOLO SI ES MICROSERVICIO SECURIZADO POR OAUTH2) 
+*Eureka Discovery Client (SOLO SI SE VA A REGISTRAR EN EUREKA O VA A DESCUBRR POR EUREKA)
+**Dependencia especial si se va a documentar:
+		<dependency>
+			 <groupId>org.springdoc</groupId>
+			 <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			 <version>2.0.0</version>
+		</dependency>
+		<dependency>
+			 <groupId>org.springframework.boot</groupId>
+			 <artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+**Si tiene servicio centralizado
+-Config client de cloud
+
+-Eureka Server
+*Eureka Server
+
+-GateWay
+*Reactive GateWay
+*Eureka Discovery Client (SOLO SI VA A DESCUBRIR LOS SERVICIOS POR EUREKA) 
+
+-Servidor de configuracion
+*Server de cloud config
