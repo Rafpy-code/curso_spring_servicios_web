@@ -29,15 +29,15 @@ spring:
       - id: servLibreria
         uri: lb://servicio-libreria 
         predicates:
-          - Path=/slibros/**
+          - Path=/slibreria/**
         filters:
-          - RewritePath=/slibros/*, /
+          - RewritePath=/slibreria/*, /
       - id: servTienda
         uri: lb://servicio-tienda 
         predicates:
-          - Path=/stematicas/**
+          - Path=/stienda/**
         filters:
-          - RewritePath=/stematicas/*, /  
+          - RewritePath=/stienda/*, /  
 eureka:
   client:
     register-with-eureka: false
