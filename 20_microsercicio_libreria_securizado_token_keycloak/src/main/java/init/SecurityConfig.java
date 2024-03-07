@@ -20,8 +20,7 @@ public class SecurityConfig {
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.csrf(c -> c.disable())
 				.authorizeHttpRequests(
-						aut -> aut
-						.requestMatchers(HttpMethod.GET, "/catalogo").authenticated()
+						aut -> aut 
 						.requestMatchers(HttpMethod.GET, "/libro/*").authenticated()
 						.requestMatchers(HttpMethod.POST, "/alta").hasRole("ADMINS")
 						.anyRequest().permitAll())
